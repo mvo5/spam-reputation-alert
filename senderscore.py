@@ -6,15 +6,17 @@ from socket import gethostbyname
 
 
 class Config:
-    SENDERSCORE = "%s.score.senderscore.org"
-    HOST = "mx1.uni-trier.de"
+    SENDERSCORE = "%s.score.senderscore.com"
+    #SENDERSCORE = "%s.pbl.spamhouse.org"
     LOGFILE="senderscore%s.log"
     TREND_ITEMS = 10
 
 
 def get_senderscore(name):
     ip = gethostbyname(name)
-    reverse = ip.split(".").reverse()
+    reverse = ip.split(".")
+    reverse.reverse()
+    reverse = ".".join(reverse)
     score = gethostbyname(Config.SENDERSCORE % reverse).split(".")[-1]
     return score
 
