@@ -4,12 +4,19 @@ import datetime
 import sys
 from socket import gethostbyname
 
+# TODO:
+#  - use a smarter (statistics based) downward trend detection algorithm
 
 class Config:
     SENDERSCORE = "%s.score.senderscore.com"
     #SENDERSCORE = "%s.pbl.spamhouse.org"
     LOGFILE="senderscore%s.log"
+    # calculate the trend based on this amount of data-points
     TREND_ITEMS = 10
+    # warn when the there is a trend change more than the given number
+    WARN_ON_TREND_DROP = -5
+    # always warn if the trend drops below this threshold
+    WARN_MIN_REPUTATION = 10
 
 
 def get_senderscore(name):
@@ -42,12 +49,13 @@ def do_cron_senderscore(name):
                                  name,
                                  get_senderscore(name)))
     trend = get_senderscore_trend(logfile)
-    if trend < -5:
+    if (trend < Config.WARN_ON_TREND_DROP or
+        trend < Config.WARN_MIN_REPUTATION):
         print "WARNING: Sender score trend '%s'" % trend
     
 
 if __name__ == "__main__":
-    if "--print" in sys.argv:
-        do_print_senderscore(sys.argv[2])
-    elif "--cron" in sys.argv:
+    if "--cron" in sys.argv:
         do_cron_senderscore(sys.argv[2])
+    else:
+        do_print_senderscore(sys.argv[1])
