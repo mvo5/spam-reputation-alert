@@ -1,4 +1,4 @@
-Senderscore reputation alter
+Senderscore reputation alert
 ============================
 
 A small script that can be run in cron. It will collect the
