@@ -1,0 +1,22 @@
+See http://web.archive.org/web/20040830010414/http://www.senderbase.org/dnsresponses.html
+
+$ dig txt 17.224.199.136.query.senderbase.org
+
+; <<>> DiG 9.9.2-P1 <<>> txt 17.224.199.136.query.senderbase.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51556
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;17.224.199.136.query.senderbase.org. IN	TXT
+
+;; ANSWER SECTION:
+17.224.199.136.query.senderbase.org. 19922 IN TXT "0-0=1|1=Universitaet Trier|2=2.6|3=4.1|4=3900712|6=1205345071|8=65536|9=4|20=mx1.|21=uni-trier.de|22=Y|23=2.6|24=4.1|25=1049184000|40=2.1|41=3.6|43=3.9|44=0.02|45=N|46=16|48=24|49=1.00|50=Trier|51=08|53=DE|54=6.6333|55=49.75"
+
+;; Query time: 12 msec
+;; SERVER: 127.0.1.1#53(127.0.1.1)
+;; WHEN: Sun Jul  7 20:04:52 2013
+;; MSG SIZE  rcvd: 290
+
+
